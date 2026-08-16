@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Business Admission Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        label .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="phone"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="phone"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-width: 150px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-reset {
+            background: #ecf0f1;
+            color: #333;
+            min-width: 150px;
+        }
+
+        .btn-reset:hover {
+            background: #d5dbdb;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Business Admission Form</h1>
+            <p>Complete this form to apply for admission to our business program</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            ✓ Form submitted successfully! We will review your application and contact you soon.
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            ✗ Please fill in all required fields correctly.
+        </div>
+
+        <form id="admissionForm" method="POST" action="#" onsubmit="handleSubmit(event)">
+            <!-- Personal Information -->
+            <fieldset style="border: none; padding: 0;">
+                <legend style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;">Personal Information</legend>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender <span class="required">*</span></label>
+                        <select id="gender" name="gender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label for="address">Address <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" placeholder="Street address" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country <span class="required">*</span></label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Educational Background -->
+            <fieldset style="border: none; padding: 0; margin-top: 30px;">
+                <legend style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;">Educational Background</legend>
+
+                <div class="form-group form-row full">
+                    <label for="highestQualification">Highest Qualification <span class="required">*</span></label>
+                    <select id="highestQualification" name="highestQualification" required>
+                        <option value="">-- Select Qualification --</option>
+                        <option value="high-school">High School</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="bachelor">Bachelor's Degree</option>
+                        <option value="master">Master's Degree</option>
+                        <option value="phd">Ph.D.</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label for="gpa">GPA / Average Score <span class="required">*</span></label>
+                    <input type="number" id="gpa" name="gpa" placeholder="e.g., 3.5" step="0.01" min="0" max="4" required>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label for="institution">Previous Institution</label>
+                    <input type="text" id="institution" name="institution" placeholder="Name of school/university">
+                </div>
+            </fieldset>
+
+            <!-- Program Selection -->
+            <fieldset style="border: none; padding: 0; margin-top: 30px;">
+                <legend style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;">Program Selection</legend>
+
+                <div class="form-group form-row full">
+                    <label for="program">Select Program <span class="required">*</span></label>
+                    <select id="program" name="program" required>
+                        <option value="">-- Select a Program --</option>
+                        <option value="business-admin">Business Administration</option>
+                        <option value="finance">Finance</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="management">Management</option>
+                        <option value="entrepreneurship">Entrepreneurship</option>
+                        <option value="accounting">Accounting</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label>Study Mode <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="fulltime" name="studyMode" value="fulltime" required>
+                            <label for="fulltime">Full-time</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="parttime" name="studyMode" value="parttime">
+                            <label for="parttime">Part-time</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="online" name="studyMode" value="online">
+                            <label for="online">Online</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Additional Information -->
+            <fieldset style="border: none; padding: 0; margin-top: 30px;">
+                <legend style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;">Additional Information</legend>
+
+                <div class="form-group form-row full">
+                    <label for="workExperience">Years of Work Experience <span class="required">*</span></label>
+                    <input type="number" id="workExperience" name="workExperience" placeholder="e.g., 5" min="0" max="70" required>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label for="motivation">Why do you want to join this program? <span class="required">*</span></label>
+                    <textarea id="motivation" name="motivation" placeholder="Tell us about your motivation and career goals..." required></textarea>
+                </div>
+
+                <div class="form-group form-row full">
+                    <label>Areas of Interest</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="strategy" name="interests" value="strategy">
+                            <label for="strategy">Strategy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="analytics" name="interests" value="analytics">
+                            <label for="analytics">Analytics</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="leadership" name="interests" value="leadership">
+                            <label for="leadership">Leadership</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group form-row full">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the terms and conditions <span class="required">*</span></label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Submit Application</button>
+                <button type="reset" class="btn-reset">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('admissionForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Check if form is valid
+            if (form.checkValidity() === false) {
+                errorMessage.style.display = 'block';
+                event.stopPropagation();
+                return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Log the data (in a real scenario, you'd send this to a server)
+            console.log('Form Data:', data);
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                form.reset();
+                successMessage.style.display = 'none';
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
