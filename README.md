@@ -1,21 +1,16 @@
-# UGANDA MY PRIDE
+# Kelvin Einstein — Personal Website
 
-A modern multi-page website celebrating **Ugandan fashion, culture and men's style**.
+Official personal website of **Kelvin Einstein**.
 
 ## Pages
-- **Home** (`index.html`) – Hero + overview of Ugandan fashion aesthetics
-- **Men's Fashion** (`mens-fashion.html`) – Dedicated to the Kanzu, modern menswear & style
-- **Culture** (`culture.html`) – Heritage, bark cloth, and living traditions
-- **Gallery** (`gallery.html`) – Visual collection focused on men & African style
+- **Home** (`index.html`) – Main introduction
+- **About** (`about.html`) – Personal story, details & skills
+- **Work** (`work.html`) – Projects, experience & highlights
+- **Contact** (`contact.html`) – Ways to get in touch
 
 ## Design
-- Dark AI/tech aesthetic with electric cyan & soft purple accents
-- Clean typography (Space Grotesk + Inter)
-- Fully responsive
-- Lightbox gallery
-
-## Tech
-Pure HTML, CSS & JavaScript. No frameworks.
+Dark modern AI/tech aesthetic with electric cyan and soft purple accents.
+Fully responsive. Pure HTML, CSS & JavaScript.
 
 ---
-© 2026 Kelvin Einstein · Uganda My Pride
+© 2026 Kelvin Einstein
