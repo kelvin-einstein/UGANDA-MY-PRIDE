@@ -1,8 +1,8 @@
 // ============================================
-// UGANDA MY PRIDE - Shared Scripts
+// KELVIN EINSTEIN — Scripts + Typewriter + Animations
 // ============================================
 
-// Mobile Menu Toggle
+// Mobile Menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 
@@ -10,8 +10,6 @@ if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
-
-    // Close menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -19,7 +17,60 @@ if (hamburger && navLinks) {
     });
 }
 
-// Smooth scrolling for anchor links
+// Active nav
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav-links a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+    }
+});
+
+// ========== TYPEWRITER EFFECT ==========
+const typewriterEl = document.getElementById('typewriter');
+if (typewriterEl) {
+    const phrases = [
+        'Computer Expert',
+        'Technologist',
+        'Digital Innovator',
+        'Systems Thinker',
+        'AI Enthusiast',
+        'Problem Solver'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 90;
+
+    function type() {
+        const current = phrases[phraseIndex];
+
+        if (isDeleting) {
+            typewriterEl.textContent = current.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 45;
+        } else {
+            typewriterEl.textContent = current.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 90;
+        }
+
+        if (!isDeleting && charIndex === current.length) {
+            isDeleting = true;
+            typingSpeed = 1800; // pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 400;
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    setTimeout(type, 600);
+}
+
+// Smooth scroll for anchors
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -27,62 +78,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-// Lightbox functionality
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxTitle = document.getElementById('lightboxTitle');
-const lightboxDesc = document.getElementById('lightboxDesc');
-const closeLightbox = document.getElementById('closeLightbox');
+// Subtle fade-in on scroll for cards
+const observerOptions = {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+};
 
-if (lightbox) {
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const img = item.querySelector('img');
-            if (img) {
-                lightboxImg.src = img.src;
-                lightboxTitle.textContent = item.dataset.title || '';
-                lightboxDesc.textContent = item.dataset.desc || '';
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    if (closeLightbox) {
-        closeLightbox.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    }
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
+}, observerOptions);
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Active nav link highlighting based on current page
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-links a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-        link.classList.add('active');
-    }
+document.querySelectorAll('.feature-card, .stat-item, .content-with-img, .content-block').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
 });
