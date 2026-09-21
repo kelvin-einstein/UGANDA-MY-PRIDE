@@ -4,96 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills | Kelvin Einstein</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <div class="logo">KELVIN EINSTEIN</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="skills.html" class="active">Skills</a></li>
-            <li><a href="work.html">Work</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="nav-right">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html" class="active">Skills</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="insights.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="icon-moon">☾</span><span class="icon-sun">☀</span></button>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
     </nav>
-
     <div class="page-accent-bar"></div>
     <section class="page-hero">
         <h1>Skills & <span>Expertise</span></h1>
         <p>Core capabilities that define my work as a computer expert.</p>
     </section>
-
     <section class="section">
-        <div class="section-header scroll-reveal">
-            <h2>Technical <span>Domains</span></h2>
-            <p>Areas where I apply deep knowledge and practical skill.</p>
-        </div>
+        <div class="section-header scroll-reveal"><h2>Technical <span>Domains</span></h2></div>
         <div class="features-grid">
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">◇</div>
-                <h3>Computer Systems</h3>
-                <p>Architecture, hardware-software interaction, resource management, performance analysis and system behaviour under load.</p>
-            </div>
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">◆</div>
-                <h3>Software & Code</h3>
-                <p>Structured programming, clean architecture, debugging, optimisation and building maintainable software solutions.</p>
-            </div>
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">◈</div>
-                <h3>Problem Diagnosis</h3>
-                <p>Systematic troubleshooting of technical issues — identifying root causes and implementing durable fixes.</p>
-            </div>
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">▣</div>
-                <h3>AI & Intelligent Systems</h3>
-                <p>Understanding modern AI capabilities, automation patterns and how intelligent tools integrate into real workflows.</p>
-            </div>
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">◇</div>
-                <h3>Networks & Connectivity</h3>
-                <p>How systems communicate, data flow, security considerations and the foundations of connected computing.</p>
-            </div>
-            <div class="feature-card scroll-reveal">
-                <div class="feature-icon">◆</div>
-                <h3>Digital Strategy</h3>
-                <p>Translating technical possibilities into practical plans that support people, products and organisational goals.</p>
-            </div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">◇</div><h3>Computer Systems</h3><p>Architecture, hardware-software interaction, resource management and performance analysis.</p></div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">◆</div><h3>Software & Code</h3><p>Structured programming, clean architecture, debugging and maintainable solutions.</p></div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">◈</div><h3>Problem Diagnosis</h3><p>Systematic troubleshooting — identifying root causes and implementing durable fixes.</p></div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">▣</div><h3>AI & Intelligent Systems</h3><p>Modern AI capabilities, automation patterns and intelligent tool integration.</p></div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">◇</div><h3>Networks & Connectivity</h3><p>How systems communicate, data flow and the foundations of connected computing.</p></div>
+            <div class="feature-card scroll-reveal"><div class="feature-icon">◆</div><h3>Digital Strategy</h3><p>Translating technical possibilities into practical plans that support real goals.</p></div>
         </div>
     </section>
-
-    <section class="section">
-        <div class="content-with-img scroll-reveal">
-            <div class="text">
-                <h2>How I <span>Work</span></h2>
-                <p>I start with understanding. Every technical engagement begins by clarifying goals, constraints and existing systems. From there I design, implement and refine.</p>
-                <p>I value documentation, clear communication and solutions that others can maintain. Technology should reduce friction, not create new forms of complexity.</p>
-            </div>
-            <div class="img-wrap">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&q=80" alt="Laptop and code">
-            </div>
-        </div>
-
-        <div class="content-block scroll-reveal">
-            <h2>Continuous <span>Growth</span></h2>
-            <p>Skills are not static. I continuously expand my knowledge across classical computer science and emerging technologies. This includes studying new tools, experimenting with systems, and refining my mental models of how computing works at different layers.</p>
-            <p>The result is a flexible expertise that adapts as the digital landscape evolves — while remaining grounded in enduring principles.</p>
-        </div>
-    </section>
-
     <footer>
         <div class="footer-grid">
-            <div class="footer-brand"><h3>Kelvin Einstein</h3><p>Computer Expert · Technologist · Digital Innovator</p></div>
+            <div class="footer-brand"><h3>Kelvin Einstein</h3><p>Computer Expert · Bududa, Uganda</p></div>
             <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="skills.html">Skills</a><a href="work.html">Work</a></div>
             <div class="footer-col"><h4>More</h4><a href="services.html">Services</a><a href="insights.html">Insights</a><a href="contact.html">Contact</a></div>
-            <div class="footer-col"><h4>Connect</h4><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Twitter / X</a></div>
+            <div class="footer-col"><h4>Connect</h4><a href="mailto:wabwirekelvin762@gmail.com">Email</a><a href="tel:+256773351699">0773 351 699</a><a href="https://instagram.com/KELVIN_EINSTEIN" target="_blank" rel="noopener">Instagram</a></div>
         </div>
         <div class="copyright">© 2026 Kelvin Einstein. All rights reserved.</div>
     </footer>
