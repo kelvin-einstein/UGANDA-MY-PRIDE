@@ -1,15 +1,16 @@
-# Kelvin Einstein — Personal Website
+# Kelvin Einstein
 
-Official personal website of **Kelvin Einstein**.
+Personal website of **Kelvin Einstein** — Computer Expert, Technologist & Digital Innovator.
 
 ## Pages
-- **Home** (`index.html`) – Main introduction
-- **About** (`about.html`) – Personal story, details & skills
-- **Work** (`work.html`) – Projects, experience & highlights
-- **Contact** (`contact.html`) – Ways to get in touch
+- **Home** – Large name + AI-structured background + expertise overview
+- **About** – Story, approach & areas of expertise
+- **Work** – Projects & technical experience
+- **Contact** – Ways to get in touch
 
 ## Design
-Dark modern AI/tech aesthetic with electric cyan and soft purple accents.
+Dark, eye-catching AI aesthetic with cyan, purple and pink accents.
+Animated grid, glowing nodes and circuit lines on the home hero.
 Fully responsive. Pure HTML, CSS & JavaScript.
 
 ---
