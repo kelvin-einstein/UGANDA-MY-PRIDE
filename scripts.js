@@ -1,18 +1,13 @@
 // ============================================
-// KELVIN EINSTEIN — Scripts + Typewriter + Fallback
+// KELVIN EINSTEIN — Scripts
 // ============================================
 
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
-
 if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-        });
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 }
 
@@ -27,56 +22,78 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Typewriter
 const typewriterEl = document.getElementById('typewriter');
 if (typewriterEl) {
-    const phrases = [
-        'Computer Expert',
-        'Technologist',
-        'Digital Innovator',
-        'Systems Thinker',
-        'AI Enthusiast',
-        'Problem Solver'
-    ];
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 90;
-
+    const phrases = ['Computer Expert', 'Technologist', 'Digital Innovator', 'Systems Thinker', 'AI Enthusiast', 'Problem Solver'];
+    let phraseIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 90;
     function type() {
         const current = phrases[phraseIndex];
         if (isDeleting) {
             typewriterEl.textContent = current.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 45;
+            charIndex--; typingSpeed = 45;
         } else {
             typewriterEl.textContent = current.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 90;
+            charIndex++; typingSpeed = 90;
         }
-        if (!isDeleting && charIndex === current.length) {
-            isDeleting = true;
-            typingSpeed = 1800;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            typingSpeed = 400;
-        }
+        if (!isDeleting && charIndex === current.length) { isDeleting = true; typingSpeed = 1800; }
+        else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 400; }
         setTimeout(type, typingSpeed);
     }
     setTimeout(type, 600);
 }
 
-// Fallback IntersectionObserver for browsers without scroll-driven animations
+// Scroll reveal fallback
 if (!CSS.supports('animation-timeline', 'view()')) {
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.scroll-reveal, .feature-card, .stat-item, .content-with-img, .content-block').forEach(el => observer.observe(el));
+}
 
-    document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .feature-card, .stat-item, .content-with-img, .content-block').forEach(el => {
-        observer.observe(el);
+// Comment section (localStorage)
+const commentForm = document.getElementById('commentForm');
+const commentList = document.getElementById('commentList');
+if (commentForm && commentList) {
+    const STORAGE_KEY = 'kelvin_einstein_comments';
+
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        commentList.innerHTML = '';
+        if (comments.length === 0) {
+            commentList.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No comments yet. Be the first to leave one!</p>';
+            return;
+        }
+        comments.slice().reverse().forEach(c => {
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `<div class="comment-author">${escapeHtml(c.name)}</div>
+                <div class="comment-text">${escapeHtml(c.text)}</div>
+                <div class="comment-time">${c.time}</div>`;
+            commentList.appendChild(div);
+        });
+    }
+
+    function escapeHtml(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('commentName').value.trim();
+        const text = document.getElementById('commentText').value.trim();
+        if (!name || !text) return;
+        const comments = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        comments.push({
+            name,
+            text,
+            time: new Date().toLocaleString()
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+        commentForm.reset();
+        loadComments();
     });
+
+    loadComments();
 }
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -85,8 +102,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (href === '#') return;
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
