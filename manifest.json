@@ -1,0 +1,18 @@
+{
+  "name": "Kelvin Einstein — Computer Expert",
+  "short_name": "Kelvin Einstein",
+  "description": "Personal website of Kelvin Einstein — Computer Expert, Technologist & Digital Innovator from Bududa, Uganda. Celebrating technology and Uganda My Pride.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#01030a",
+  "theme_color": "#01030a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "IMG20231225085414.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
