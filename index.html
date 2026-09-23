@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelvin Einstein | Computer Expert</title>
-    <meta name="description" content="Kelvin Einstein — Computer Expert from Bududa, Uganda.">
+    <title>Kelvin Einstein | Computer Expert — Bududa, Uganda</title>
+    <meta name="description" content="Kelvin Einstein — Computer Expert, Technologist & Digital Innovator from Bududa, Uganda. Systems thinking, AI, problem solving and Uganda My Pride.">
+    <meta property="og:title" content="Kelvin Einstein | Computer Expert">
+    <meta property="og:description" content="Building clarity in a complex digital world through systems thinking, technology and continuous innovation. From Bududa, Uganda.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="IMG20231225085414.jpg">
+    <meta name="theme-color" content="#01030a">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="extra.css">
 </head>
 <body>
     <nav>
@@ -20,6 +27,8 @@
                 <li><a href="skills.html">Skills</a></li>
                 <li><a href="work.html">Work</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="insights.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -27,7 +36,7 @@
                 <span class="icon-moon">☾</span>
                 <span class="icon-sun">☀</span>
             </button>
-            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
@@ -48,7 +57,7 @@
         </div>
         <h1>KELVIN<br><span>EINSTEIN</span></h1>
         <div class="typewriter-wrap"><span class="typewriter" id="typewriter"></span></div>
-        <p class="sub">Building clarity in a complex digital world through systems thinking, technology and continuous innovation.</p>
+        <p class="sub">Building clarity in a complex digital world through systems thinking, technology and continuous innovation. Proudly from Bududa, Uganda.</p>
         <div class="hero-buttons">
             <a href="about.html" class="btn">Discover More</a>
             <a href="contact.html" class="btn btn-outline">Connect</a>
@@ -75,10 +84,10 @@
             <div class="text">
                 <h2>The Power of <span>Computing</span></h2>
                 <p>Computers are the engines of modern progress. Understanding how they process information, manage resources and execute instructions is the foundation of everything I do.</p>
-                <p>From Bududa, Uganda, I bring a focused, practical approach to technology — grounded in strong fundamentals and continuous learning.</p>
+                <p>From Bududa, Uganda, I bring a focused, practical approach to technology — grounded in strong fundamentals and continuous learning. This site also celebrates Uganda My Pride — our culture, scenery and living traditions.</p>
             </div>
             <div class="img-wrap face-focus">
-                <img src="IMG20231225085414.jpg" alt="Kelvin Einstein">
+                <img src="IMG20231225085414.jpg" alt="Kelvin Einstein" loading="lazy" width="600" height="700">
             </div>
         </div>
     </section>
@@ -96,8 +105,8 @@
             <h3>Leave a Comment</h3>
             <p>Share your thoughts or questions.</p>
             <form class="comment-form" id="commentForm">
-                <input type="text" id="commentName" placeholder="Your name" required maxlength="60">
-                <textarea id="commentText" placeholder="Write your comment..." required maxlength="500"></textarea>
+                <input type="text" id="commentName" placeholder="Your name" required maxlength="60" aria-label="Your name">
+                <textarea id="commentText" placeholder="Write your comment..." required maxlength="500" aria-label="Your comment"></textarea>
                 <button type="submit" class="btn">Post Comment</button>
             </form>
             <div class="comment-list" id="commentList"></div>
@@ -115,16 +124,33 @@
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-brand"><h3>Kelvin Einstein</h3><p>Computer Expert · Bududa, Uganda</p></div>
-            <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="skills.html">Skills</a><a href="work.html">Work</a></div>
-            <div class="footer-col"><h4>More</h4><a href="services.html">Services</a><a href="insights.html">Insights</a><a href="contact.html">Contact</a></div>
-            <div class="footer-col"><h4>Connect</h4>
+            <div class="footer-brand">
+                <h3>Kelvin Einstein</h3>
+                <p>Computer Expert · Bududa, Uganda<br>Celebrating technology & Uganda’s pride.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="work.html">Work</a>
+            </div>
+            <div class="footer-col">
+                <h4>More</h4>
+                <a href="services.html">Services</a>
+                <a href="culture.html">Culture</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="insights.html">Insights</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
                 <a href="mailto:wabwirekelvin762@gmail.com">Email</a>
                 <a href="tel:+256773351699">0773 351 699</a>
                 <a href="https://instagram.com/KELVIN_EINSTEIN" target="_blank" rel="noopener">Instagram</a>
             </div>
         </div>
-        <div class="copyright">© 2026 Kelvin Einstein. All rights reserved.</div>
+        <div class="copyright">© 2026 Kelvin Einstein · Uganda My Pride. All rights reserved.</div>
     </footer>
     <script src="scripts.js"></script>
 </body>
