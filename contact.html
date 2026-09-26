@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="extra.css">
 </head>
 <body>
-    <!-- Optimized SVG sprite (define once, reuse with <use>) -->
     <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
         <defs>
             <symbol id="icon-instagram" viewBox="0 0 24 24">
@@ -52,25 +51,24 @@
         <p>Let’s talk technology, systems, collaboration or Uganda pride.</p>
     </section>
 
-    <!-- Profile photo: local repo image (reliable). Drive URL as secondary source. -->
     <section class="section contact-profile-section">
         <div class="contact-profile scroll-reveal">
             <div class="contact-profile-photo">
                 <img
-                    id="profilePhoto"
                     src="IMG20231225085414.jpg"
                     alt="Kelvin Einstein"
                     width="280"
                     height="280"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
+                    fetchpriority="high"
                 >
             </div>
             <div class="contact-profile-text">
                 <h2>Kelvin <span>Einstein</span></h2>
                 <p>Computer Expert · Technologist · Digital Innovator</p>
                 <p class="contact-profile-loc">Bududa, Uganda</p>
-                <a href="https://instagram.com/KELVIN_EINSTEIN" target="_blank" rel="noopener noreferrer" class="instagram-btn" aria-label="Instagram @KELVIN_EINSTEIN">
+                <a href="https://instagram.com/kelvinwabwire43" target="_blank" rel="noopener noreferrer" class="instagram-btn" aria-label="Instagram @kelvinwabwire43">
                     <svg class="ig-icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
                     <span>@kelvinwabwire43</span>
                 </a>
@@ -104,9 +102,9 @@
                 </div>
                 <h3>Instagram</h3>
                 <p>
-                    <a href="https://instagram.com/KELVIN_EINSTEIN" target="_blank" rel="noopener noreferrer" class="ig-link contact-detail-link">
+                    <a href="https://instagram.com/kelvinwabwire43" target="_blank" rel="noopener noreferrer" class="ig-link contact-detail-link">
                         <svg class="ig-icon inline" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
-                        @KELVIN_EINSTEIN
+                        @kelvinwabwire43
                     </a>
                 </p>
             </div>
@@ -125,14 +123,14 @@
             </div>
             <input type="text" name="subject" placeholder="Subject" maxlength="120" aria-label="Subject">
             <textarea name="message" placeholder="Your message..." required maxlength="2000" rows="6" aria-label="Your message"></textarea>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn btn-hover-glow">Send Message</button>
             <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
             <p class="form-note">Replace <code>YOUR_FORM_ID</code> in the form action with your free Formspree form ID (formspree.io).</p>
         </form>
     </section>
 
     <section class="section">
-        <div class="donate-box scroll-reveal">
+        <div class="donate-box donate-box-hover scroll-reveal">
             <h3>Donate / Support</h3>
             <p>Support my work via mobile money or a direct call.</p>
             <a href="tel:+256773351699" class="btn btn-donate">Donate — 0773 351 699</a>
@@ -162,7 +160,7 @@
                 <h4>Connect</h4>
                 <a href="mailto:wabwirekelvin762@gmail.com">Email</a>
                 <a href="tel:+256773351699">0773 351 699</a>
-                <a href="https://instagram.com/KELVIN_EINSTEIN" target="_blank" rel="noopener noreferrer" class="footer-ig">
+                <a href="https://instagram.com/kelvinwabwire43" target="_blank" rel="noopener noreferrer" class="footer-ig">
                     <svg class="ig-icon inline" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
                     Instagram
                 </a>
@@ -171,18 +169,5 @@
         <div class="copyright">© 2026 Kelvin Einstein · Uganda My Pride. All rights reserved.</div>
     </footer>
     <script src="scripts.js"></script>
-    <script>
-    // Try Google Drive image only if file is shared "Anyone with the link"
-    // File ID: 1y4kIhwQSLCvL0JThTEOt88Qw1tSZ8Til
-    (function () {
-        var img = document.getElementById('profilePhoto');
-        if (!img) return;
-        var driveUrl = 'https://drive.google.com/thumbnail?id=1y4kIhwQSLCvL0JThTEOt88Qw1tSZ8Til&sz=w800';
-        var probe = new Image();
-        probe.onload = function () { img.src = driveUrl; };
-        probe.onerror = function () { /* keep local IMG20231225085414.jpg */ };
-        probe.src = driveUrl;
-    })();
-    </script>
 </body>
 </html>
