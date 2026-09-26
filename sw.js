@@ -1,5 +1,5 @@
 // Simple service worker for offline caching of core assets
-const CACHE_NAME = 'kelvin-einstein-v1';
+const CACHE_NAME = 'kelvin-einstein-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -7,8 +7,6 @@ const ASSETS = [
   '/skills.html',
   '/work.html',
   '/services.html',
-  '/culture.html',
-  '/gallery.html',
   '/insights.html',
   '/contact.html',
   '/style.css',
