@@ -2,7 +2,7 @@
 
 Personal website of **Kelvin Einstein** — Computer Expert, Technologist & Digital Innovator.
 
-## Pages (7 total)
+## Pages
 - **Home** — Giant name + rich AI atmosphere + typewriter + animations
 - **About** — Story, approach and personal details
 - **Skills** — Technical domains and expertise
@@ -17,6 +17,7 @@ Personal website of **Kelvin Einstein** — Computer Expert, Technologist & Digi
 - Scroll fade-in animations
 - AI & computer imagery throughout
 - Fully responsive dark tech design
+- Dark / light theme toggle
 
 ---
 © 2026 Kelvin Einstein
