@@ -1,8 +1,7 @@
 /* ============================================
-   ADDITIONAL STYLES — Skills bars, Form, Lightbox, PWA, A11y
-   + Hide removed page links (culture / gallery)
-   + Mobile responsive design tips (see comments)
-   + Instagram icons + contact profile photo
+   ADDITIONAL STYLES — Skills, Form, Lightbox, A11y
+   + Instagram SVG (sprite-ready) + hover effects
+   + Contact profile photo
    ============================================ */
 
 /* ---------- Removed pages: hide leftover links ---------- */
@@ -21,11 +20,17 @@ li:has(> a[href="/gallery.html"]) {
     pointer-events: none !important;
 }
 
-/* ---------- Instagram icon ---------- */
+/* ---------- SVG icon optimization ----------
+   Path defined once in <symbol id="icon-instagram">.
+   Reuse with <svg class="ig-icon"><use href="#icon-instagram"></use></svg>
+   Benefits: smaller HTML, one paint path, currentColor theming.
+*/
 .ig-icon {
     display: inline-block;
     vertical-align: middle;
     flex-shrink: 0;
+    fill: currentColor;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
 }
 .ig-icon.inline {
     margin-right: 6px;
@@ -37,21 +42,47 @@ li:has(> a[href="/gallery.html"]) {
     align-items: center;
     justify-content: center;
     color: var(--primary);
+    transition: color 0.3s ease, transform 0.3s ease;
 }
+.feature-card-hover:hover .feature-icon-ig {
+    color: #e1306c;
+    transform: scale(1.12) rotate(-6deg);
+}
+.feature-card-hover:hover .feature-icon-ig .ig-icon {
+    filter: drop-shadow(0 0 10px rgba(225, 48, 108, 0.55));
+}
+
+/* ---------- Instagram / social links ---------- */
 .ig-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 .ig-link:hover {
-    text-decoration: underline;
+    color: #e1306c !important;
+    transform: translateX(3px);
+}
+.ig-link:hover .ig-icon {
+    transform: scale(1.15);
+    color: #e1306c;
 }
 .footer-ig {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
+.footer-ig:hover {
+    color: #e1306c;
+    transform: translateX(3px);
+}
+.footer-ig:hover .ig-icon {
+    transform: scale(1.2);
+    color: #e1306c;
+}
+
 .instagram-btn {
     display: inline-flex;
     align-items: center;
@@ -65,19 +96,28 @@ li:has(> a[href="/gallery.html"]) {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
 }
 .instagram-btn:hover {
     border-color: #e1306c;
-    color: #e1306c;
-    box-shadow: 0 0 24px rgba(225, 48, 108, 0.35);
-    transform: translateY(-2px);
+    color: #fff;
+    background: linear-gradient(135deg, #e1306c, #833ab4);
+    box-shadow: 0 8px 28px rgba(225, 48, 108, 0.45);
+    transform: translateY(-3px) scale(1.03);
+}
+.instagram-btn:hover .ig-icon {
+    color: #fff;
+    transform: scale(1.1) rotate(-8deg);
+}
+.instagram-btn:active {
+    transform: translateY(-1px) scale(1.01);
 }
 .instagram-btn .ig-icon {
     color: #e1306c;
 }
 
-/* ---------- Contact profile (Drive image) ---------- */
+/* ---------- Contact profile photo + hover ---------- */
 .contact-profile-section {
     padding-top: 40px;
     padding-bottom: 20px;
@@ -92,6 +132,12 @@ li:has(> a[href="/gallery.html"]) {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 20px;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.contact-profile:hover {
+    border-color: rgba(0, 255, 255, 0.45);
+    box-shadow: 0 12px 40px rgba(0, 255, 255, 0.12);
+    transform: translateY(-4px);
 }
 .contact-profile-photo {
     flex-shrink: 0;
@@ -101,12 +147,22 @@ li:has(> a[href="/gallery.html"]) {
     overflow: hidden;
     border: 3px solid var(--primary);
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-profile:hover .contact-profile-photo {
+    border-color: #e1306c;
+    box-shadow: 0 0 40px rgba(225, 48, 108, 0.4);
+    transform: scale(1.05);
 }
 .contact-profile-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-profile:hover .contact-profile-photo img {
+    transform: scale(1.08);
 }
 .contact-profile-text h2 {
     font-size: 1.85rem;
@@ -128,6 +184,31 @@ li:has(> a[href="/gallery.html"]) {
     opacity: 0.85;
 }
 
+/* Contact detail links hover */
+.contact-detail-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.contact-detail-link:hover {
+    color: var(--accent-2);
+    text-shadow: 0 0 12px rgba(255, 92, 225, 0.35);
+}
+
+/* Feature cards on contact — hover lift */
+.feature-card-hover {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.feature-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 255, 255, 0.12);
+    border-color: rgba(0, 255, 255, 0.4);
+}
+.feature-card-hover:hover .feature-icon {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+}
+
 /* Skill bars */
 .skills-bars {
     max-width: 720px;
@@ -136,9 +217,7 @@ li:has(> a[href="/gallery.html"]) {
     flex-direction: column;
     gap: 28px;
 }
-.skill-bar-wrap {
-    width: 100%;
-}
+.skill-bar-wrap { width: 100%; }
 .skill-label {
     display: flex;
     justify-content: space-between;
@@ -185,7 +264,11 @@ li:has(> a[href="/gallery.html"]) {
     color: var(--text);
     font-family: inherit;
     font-size: 0.95rem;
-    transition: border-color 0.25s, box-shadow 0.25s;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s ease;
+}
+.contact-form input:hover,
+.contact-form textarea:hover {
+    border-color: rgba(0, 255, 255, 0.4);
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
@@ -230,9 +313,14 @@ li:has(> a[href="/gallery.html"]) {
     background: rgba(0, 255, 255, 0.08);
     border: 1px solid var(--border);
     color: var(--primary);
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+.project-tags span:hover {
+    background: rgba(0, 255, 255, 0.18);
+    transform: translateY(-2px);
 }
 
-/* Lightbox improvements */
+/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -244,9 +332,7 @@ li:has(> a[href="/gallery.html"]) {
     flex-direction: column;
     padding: 20px;
 }
-.lightbox.active {
-    display: flex;
-}
+.lightbox.active { display: flex; }
 .lightbox img {
     max-width: 90vw;
     max-height: 75vh;
@@ -263,9 +349,12 @@ li:has(> a[href="/gallery.html"]) {
     cursor: pointer;
     line-height: 1;
     opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
 }
-.close-lightbox:hover { opacity: 1; }
+.close-lightbox:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
 .lightbox-caption {
     text-align: center;
     margin-top: 16px;
@@ -274,7 +363,14 @@ li:has(> a[href="/gallery.html"]) {
 .lightbox-caption h3 { font-size: 1.2rem; margin-bottom: 4px; }
 .lightbox-caption p { color: #aaa; font-size: 0.9rem; }
 
-.gallery-item { cursor: pointer; }
+.gallery-item {
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -293,11 +389,9 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* Mobile responsive */
+/* Mobile */
 @media (max-width: 600px) {
-    .contact-form .form-row {
-        grid-template-columns: 1fr;
-    }
+    .contact-form .form-row { grid-template-columns: 1fr; }
     .contact-profile {
         flex-direction: column;
         text-align: center;
