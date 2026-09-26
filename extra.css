@@ -1,10 +1,9 @@
 /* ============================================
    ADDITIONAL STYLES — Skills, Form, Lightbox, A11y
-   + Instagram SVG (sprite-ready) + hover effects
-   + Contact profile photo
+   + Instagram SVG + hover effects + profile photo
    ============================================ */
 
-/* ---------- Removed pages: hide leftover links ---------- */
+/* Hide removed page links */
 a[href="culture.html"],
 a[href="/culture.html"],
 a[href="./culture.html"],
@@ -20,17 +19,13 @@ li:has(> a[href="/gallery.html"]) {
     pointer-events: none !important;
 }
 
-/* ---------- SVG icon optimization ----------
-   Path defined once in <symbol id="icon-instagram">.
-   Reuse with <svg class="ig-icon"><use href="#icon-instagram"></use></svg>
-   Benefits: smaller HTML, one paint path, currentColor theming.
-*/
+/* ---------- SVG icons ---------- */
 .ig-icon {
     display: inline-block;
     vertical-align: middle;
     flex-shrink: 0;
     fill: currentColor;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease, filter 0.3s ease;
 }
 .ig-icon.inline {
     margin-right: 6px;
@@ -46,13 +41,13 @@ li:has(> a[href="/gallery.html"]) {
 }
 .feature-card-hover:hover .feature-icon-ig {
     color: #e1306c;
-    transform: scale(1.12) rotate(-6deg);
+    transform: scale(1.15) rotate(-8deg);
 }
 .feature-card-hover:hover .feature-icon-ig .ig-icon {
-    filter: drop-shadow(0 0 10px rgba(225, 48, 108, 0.55));
+    filter: drop-shadow(0 0 12px rgba(225, 48, 108, 0.6));
 }
 
-/* ---------- Instagram / social links ---------- */
+/* ---------- Instagram links ---------- */
 .ig-link {
     display: inline-flex;
     align-items: center;
@@ -62,10 +57,10 @@ li:has(> a[href="/gallery.html"]) {
 }
 .ig-link:hover {
     color: #e1306c !important;
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 .ig-link:hover .ig-icon {
-    transform: scale(1.15);
+    transform: scale(1.2);
     color: #e1306c;
 }
 .footer-ig {
@@ -76,10 +71,10 @@ li:has(> a[href="/gallery.html"]) {
 }
 .footer-ig:hover {
     color: #e1306c;
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 .footer-ig:hover .ig-icon {
-    transform: scale(1.2);
+    transform: scale(1.25);
     color: #e1306c;
 }
 
@@ -103,12 +98,12 @@ li:has(> a[href="/gallery.html"]) {
     border-color: #e1306c;
     color: #fff;
     background: linear-gradient(135deg, #e1306c, #833ab4);
-    box-shadow: 0 8px 28px rgba(225, 48, 108, 0.45);
-    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 32px rgba(225, 48, 108, 0.5);
+    transform: translateY(-4px) scale(1.04);
 }
 .instagram-btn:hover .ig-icon {
     color: #fff;
-    transform: scale(1.1) rotate(-8deg);
+    transform: scale(1.15) rotate(-10deg);
 }
 .instagram-btn:active {
     transform: translateY(-1px) scale(1.01);
@@ -117,7 +112,7 @@ li:has(> a[href="/gallery.html"]) {
     color: #e1306c;
 }
 
-/* ---------- Contact profile photo + hover ---------- */
+/* ---------- Profile photo (local image) + hover ---------- */
 .contact-profile-section {
     padding-top: 40px;
     padding-bottom: 20px;
@@ -135,11 +130,12 @@ li:has(> a[href="/gallery.html"]) {
     transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 .contact-profile:hover {
-    border-color: rgba(0, 255, 255, 0.45);
-    box-shadow: 0 12px 40px rgba(0, 255, 255, 0.12);
-    transform: translateY(-4px);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 16px 48px rgba(0, 255, 255, 0.15);
+    transform: translateY(-6px);
 }
 .contact-profile-photo {
+    position: relative;
     flex-shrink: 0;
     width: 180px;
     height: 180px;
@@ -149,20 +145,41 @@ li:has(> a[href="/gallery.html"]) {
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
     transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+/* Soft glow ring on hover */
+.contact-profile-photo::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--primary), #e1306c, var(--accent)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+.contact-profile:hover .contact-profile-photo::after {
+    opacity: 1;
+}
 .contact-profile:hover .contact-profile-photo {
     border-color: #e1306c;
-    box-shadow: 0 0 40px rgba(225, 48, 108, 0.4);
-    transform: scale(1.05);
+    box-shadow: 0 0 48px rgba(225, 48, 108, 0.45);
+    transform: scale(1.06);
 }
 .contact-profile-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .contact-profile:hover .contact-profile-photo img {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 .contact-profile-text h2 {
     font-size: 1.85rem;
@@ -184,7 +201,7 @@ li:has(> a[href="/gallery.html"]) {
     opacity: 0.85;
 }
 
-/* Contact detail links hover */
+/* Contact detail links */
 .contact-detail-link {
     color: var(--primary);
     text-decoration: none;
@@ -192,21 +209,35 @@ li:has(> a[href="/gallery.html"]) {
 }
 .contact-detail-link:hover {
     color: var(--accent-2);
-    text-shadow: 0 0 12px rgba(255, 92, 225, 0.35);
+    text-shadow: 0 0 14px rgba(255, 92, 225, 0.4);
 }
 
-/* Feature cards on contact — hover lift */
+/* Feature cards hover */
 .feature-card-hover {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .feature-card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 255, 255, 0.12);
-    border-color: rgba(0, 255, 255, 0.4);
+    transform: translateY(-10px);
+    box-shadow: 0 18px 44px rgba(0, 255, 255, 0.14);
+    border-color: rgba(0, 255, 255, 0.45);
 }
 .feature-card-hover:hover .feature-icon {
-    transform: scale(1.15);
+    transform: scale(1.2);
     transition: transform 0.3s ease;
+}
+
+/* Donate box hover */
+.donate-box-hover {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.donate-box-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(255, 92, 225, 0.2);
+}
+
+/* Button glow hover */
+.btn-hover-glow:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.55);
 }
 
 /* Skill bars */
@@ -268,7 +299,7 @@ li:has(> a[href="/gallery.html"]) {
 }
 .contact-form input:hover,
 .contact-form textarea:hover {
-    border-color: rgba(0, 255, 255, 0.4);
+    border-color: rgba(0, 255, 255, 0.45);
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
@@ -316,7 +347,7 @@ li:has(> a[href="/gallery.html"]) {
     transition: background 0.25s ease, transform 0.25s ease;
 }
 .project-tags span:hover {
-    background: rgba(0, 255, 255, 0.18);
+    background: rgba(0, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
@@ -368,8 +399,8 @@ li:has(> a[href="/gallery.html"]) {
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .gallery-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    transform: scale(1.04);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -399,8 +430,8 @@ textarea:focus-visible {
         padding: 24px 18px;
     }
     .contact-profile-photo {
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
     }
 }
 
