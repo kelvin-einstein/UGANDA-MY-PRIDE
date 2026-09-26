@@ -2,13 +2,10 @@
    ADDITIONAL STYLES — Skills bars, Form, Lightbox, PWA, A11y
    + Hide removed page links (culture / gallery)
    + Mobile responsive design tips (see comments)
+   + Instagram icons + contact profile photo
    ============================================ */
 
-/* ---------- Removed pages: hide leftover links ----------
-   culture.html and gallery.html were deleted.
-   These rules hide any remaining anchors that still point
-   to those files (bookmarks, old HTML, third-party embeds).
-*/
+/* ---------- Removed pages: hide leftover links ---------- */
 a[href="culture.html"],
 a[href="/culture.html"],
 a[href="./culture.html"],
@@ -22,6 +19,113 @@ li:has(> a[href="/gallery.html"]) {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
+}
+
+/* ---------- Instagram icon ---------- */
+.ig-icon {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.ig-icon.inline {
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
+}
+.feature-icon-ig {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+.ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.ig-link:hover {
+    text-decoration: underline;
+}
+.footer-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: linear-gradient(135deg, rgba(225, 48, 108, 0.15), rgba(131, 58, 180, 0.15));
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.instagram-btn:hover {
+    border-color: #e1306c;
+    color: #e1306c;
+    box-shadow: 0 0 24px rgba(225, 48, 108, 0.35);
+    transform: translateY(-2px);
+}
+.instagram-btn .ig-icon {
+    color: #e1306c;
+}
+
+/* ---------- Contact profile (Drive image) ---------- */
+.contact-profile-section {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.contact-profile {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+}
+.contact-profile-photo {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+}
+.contact-profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.contact-profile-text h2 {
+    font-size: 1.85rem;
+    margin-bottom: 8px;
+}
+.contact-profile-text h2 span {
+    background: var(--gradient-text);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.contact-profile-text p {
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+.contact-profile-loc {
+    font-size: 0.9rem;
+    opacity: 0.85;
 }
 
 /* Skill bars */
@@ -170,10 +274,8 @@ li:has(> a[href="/gallery.html"]) {
 .lightbox-caption h3 { font-size: 1.2rem; margin-bottom: 4px; }
 .lightbox-caption p { color: #aaa; font-size: 0.9rem; }
 
-/* Gallery item cursor (mens-fashion lightbox still uses this) */
 .gallery-item { cursor: pointer; }
 
-/* Accessibility & reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -183,7 +285,6 @@ li:has(> a[href="/gallery.html"]) {
     html { scroll-behavior: auto; }
 }
 
-/* Focus visible for keyboard users */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -192,28 +293,23 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* ============================================
-   MOBILE RESPONSIVE DESIGN TIPS (implemented)
-   --------------------------------------------
-   1. Always set viewport meta:
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   2. Prefer relative units (rem, %, vw) and clamp() for fluid type.
-   3. Stack grids/forms to 1 column under ~600–768px.
-   4. Touch targets ≥ 44×44px (buttons, nav, hamburger).
-   5. Avoid horizontal overflow: overflow-x: hidden on body; max-width: 100% on images.
-   6. Hamburger menu for nav on small screens; full links on desktop.
-   7. Test at 320px, 375px, 768px, 1024px widths.
-   8. Prefer flex-wrap / auto-fit grids over fixed pixel columns.
-   ============================================ */
-
-/* Form: single column on phones */
+/* Mobile responsive */
 @media (max-width: 600px) {
     .contact-form .form-row {
         grid-template-columns: 1fr;
     }
+    .contact-profile {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+        padding: 24px 18px;
+    }
+    .contact-profile-photo {
+        width: 140px;
+        height: 140px;
+    }
 }
 
-/* Extra mobile polish for nav + content spacing */
 @media (max-width: 768px) {
     .section {
         padding-left: 20px;
@@ -252,6 +348,6 @@ textarea:focus-visible {
     .comment-form textarea,
     .contact-form input,
     .contact-form textarea {
-        font-size: 16px; /* prevents iOS zoom on focus */
+        font-size: 16px;
     }
 }
