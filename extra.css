@@ -1,6 +1,28 @@
 /* ============================================
    ADDITIONAL STYLES — Skills bars, Form, Lightbox, PWA, A11y
+   + Hide removed page links (culture / gallery)
+   + Mobile responsive design tips (see comments)
    ============================================ */
+
+/* ---------- Removed pages: hide leftover links ----------
+   culture.html and gallery.html were deleted.
+   These rules hide any remaining anchors that still point
+   to those files (bookmarks, old HTML, third-party embeds).
+*/
+a[href="culture.html"],
+a[href="/culture.html"],
+a[href="./culture.html"],
+a[href="gallery.html"],
+a[href="/gallery.html"],
+a[href="./gallery.html"],
+li:has(> a[href="culture.html"]),
+li:has(> a[href="gallery.html"]),
+li:has(> a[href="/culture.html"]),
+li:has(> a[href="/gallery.html"]) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
 
 /* Skill bars */
 .skills-bars {
@@ -148,7 +170,7 @@
 .lightbox-caption h3 { font-size: 1.2rem; margin-bottom: 4px; }
 .lightbox-caption p { color: #aaa; font-size: 0.9rem; }
 
-/* Gallery item cursor */
+/* Gallery item cursor (mens-fashion lightbox still uses this) */
 .gallery-item { cursor: pointer; }
 
 /* Accessibility & reduced motion */
@@ -170,9 +192,66 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* Responsive form */
+/* ============================================
+   MOBILE RESPONSIVE DESIGN TIPS (implemented)
+   --------------------------------------------
+   1. Always set viewport meta:
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   2. Prefer relative units (rem, %, vw) and clamp() for fluid type.
+   3. Stack grids/forms to 1 column under ~600–768px.
+   4. Touch targets ≥ 44×44px (buttons, nav, hamburger).
+   5. Avoid horizontal overflow: overflow-x: hidden on body; max-width: 100% on images.
+   6. Hamburger menu for nav on small screens; full links on desktop.
+   7. Test at 320px, 375px, 768px, 1024px widths.
+   8. Prefer flex-wrap / auto-fit grids over fixed pixel columns.
+   ============================================ */
+
+/* Form: single column on phones */
 @media (max-width: 600px) {
     .contact-form .form-row {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Extra mobile polish for nav + content spacing */
+@media (max-width: 768px) {
+    .section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .nav-links a {
+        font-size: 0.95rem;
+        padding: 10px 4px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .theme-toggle,
+    .hamburger {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-buttons {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 8px;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+    }
+    .comment-form input,
+    .comment-form textarea,
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px; /* prevents iOS zoom on focus */
     }
 }
